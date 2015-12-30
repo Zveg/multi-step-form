@@ -1,2 +1,146 @@
-/* app css stylesheet */
 
+html {
+    background-color: black;
+}
+
+.multi-form {
+    width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+}
+
+.multi-form fieldset {
+    background: black;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: absolute;
+}
+
+.multi-form fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.multi-form input, .multi-form textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+/*buttons*/
+.multi-form .action-button {
+    width: 100px;
+    background: #27AE60;
+    font-weight: bold;
+    color: black;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+.multi-form .action-button:hover, .multi-form .action-button:focus {
+    box-shadow: 0 0 0 2px black, 0 0 0 3px #27AE60;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    margin-left: 35px;
+    overflow: hidden;
+}
+
+#progressbar li{
+    display: table-cell;
+    width: auto;
+}
+
+#progressbar li div{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 21px;
+    border-radius: 50%;
+    background: white;
+    position: relative;
+    margin-left: 34px;
+    border: 2px solid #c7c7b3;
+    font-size: 0.9rem;
+}
+
+#progressbar li div:after {
+    position: absolute;
+    width: 70px;
+    height: 5px;
+    background: yellow;
+    content: " ";
+    right: -74px;
+    top: 8px;
+}
+#progressbar li.active div{
+    background: green;
+    color: white;
+    border: 2px solid green;
+}
+
+#progressbar li.disabled div{
+    opacity: 0.5;
+}
+
+#progressbar li:last-child div:after{
+    display: none;
+}
+
+#progressbar li:after{
+  display: none;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    position: absolute;
+    width: 70px;
+    height: 5px;
+    background: yellow;
+    content: " ";
+    right: -74px;
+    top: 8px;
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before, #progressbar li.active:after {
+    background: #27AE60;
+    color: black;
+}

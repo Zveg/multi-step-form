@@ -1,0 +1,64 @@
+<form novalidate ng-class="{'show-errors': submitted}" name="step4Form">
+  <fieldset ng-init="setForm(step4Form, 'step4')">
+    <h5>Practicioner</h5>
+
+    <div class="row">
+      <div class="small-12 large-3 columns">
+        <select ng-model="practitioner.user.salutation" ng-init="practitioner.user.salutation = salutations[0]" ng-options="salutation as salutation for salutation in salutations">
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="text" ng-model="practitioner.user.name"  name="name" placeholder="Contact Name"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="text" ng-model="practitioner.role"  name="role" placeholder="Role"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="email" ng-model="practitioner.user.email"  name="email" placeholder="Email"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="text" ng-model="practitioner.user.telephone"  name="phone" placeholder="Phone"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <textarea ng-model="practitioner.profile"  name="profile" placeholder="Profile"></textarea>
+      </div>
+    </div>
+
+  </fieldset>
+  <fieldset flow-init
+            flow-name="uploader.flow"
+            flow-file-added="addPhoto($file)">
+    <h5>Upload a picture</h5>
+    <div class="row">
+      <div class="large-12 columns">
+        <div flow-drop class="fileupload">
+          <div class="small-8 columns hide-for-small-only">
+            <input type="text" class="filepath" placeholder="Choose a photo to upload" disabled="disabled" />
+          </div>
+          <div class="large-4 small-12 columns">
+            <div flow-btn type="file" class="button">
+              <span>Browse</span>
+              <input id="uploadBtn"  class="upload" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+          <div ng-hide="practitionerImage[0].data" class="preview-box"></div>
+        <img ng-show="practitionerImage[0].data" class="preview-box img-responsive" ng-click="removePhoto(practitioner.image.data)" flow-img="practitionerImage[0].data">
+      </div>
+    </div>
+  </fieldset>
+</form>

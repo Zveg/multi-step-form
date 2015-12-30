@@ -1,0 +1,30 @@
+<div class="multi-form">
+			<ul class="list-inline" id="progressbar">
+
+				<li data-ng-repeat="route in childrenRoutes track by $index" ng-class="{active: isCurrentState($index+1), disabled:!isCurrentState($index+1)}" >
+					<div>{{$index+1}}</div>
+				</li>
+			</ul>
+		<div class="title-block">
+			<div class="row">
+				<div class="large-12 columns">
+				</div>
+			</div>
+		</div>
+
+		<div >
+			<div class="row">
+				<div class="large-8 columns">
+					<div ui-view="multisteps">
+						<!-- Multistep form Content   -->
+					</div>
+				</div>
+			</div>
+		</div>
+{{user}}
+	<div class="">
+		<a href="" ng-click="log(forms.current)" class="button">form</a>
+		<a class="btn btn-default" href="" ng-hide="!isNotFirst()" ng-click="back()" class="button">Back</a>
+		<a class="btn btn-default" href="" ng-click="goNext(forms.current)" ng-disabled="forms.current.$invalid" class="button">{{isCurrentState(4)?'SEND':'Next'}}</a>
+	</div>
+</div>
