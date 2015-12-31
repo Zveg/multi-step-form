@@ -1,66 +1,38 @@
 'use strict';
 
 angular.module('app.controllers')
-  .controller('MultiStepCtrl', function ($scope, $state, $filter) {
+  .controller('MultiStepCtrl', ["$scope", "$state", "$filter", "multistepServ", function ($scope, $state, $filter, multistepServ) {
     $scope.user = {};
     $scope.forms = {};
-    var childStates = function (name) {
-      var routerRegexp = new RegExp(name + "[.][a-z]*", "i");
-      var list = $state.get();
-      var children = [];
-      angular.forEach(list, function (state) {
-        if (routerRegexp.test(state.name)) {
-          children.push(state);
-        }
-      });
-      return children;
-    };
 
-    $scope.childrenRoutes = childStates("multistep");
-
-    var getRouterByNumber = function (number) {
-      return $filter("filter")($scope.childrenRoutes, {data: {stepNumber: number}}, true)[0];
-    };
-
-    var nextStep = function () {
-      return getRouterByNumber($state.current.data.stepNumber + 1)
-    };
-
-
-    var previousStep = function () {
-      return getRouterByNumber($state.current.data.stepNumber - 1)
-    };
-
-    var currentStep = function () {
-      return $state.current.data.stepNumber;
-    };
-
-    $scope.isCurrentState = function (step) {
-      return currentStep() >= step;
-    };
 
     var submitForm = function () {
       alert("Form submited!!!!");
     };
 
-    $scope.goNext = function (form) {
-      var nextRouter = nextStep();
-      if (!nextRouter) {
+    $scope.goNext = function () {
+      console.log($scope.forms.current);
+      var nextState = multistepServ.nextStep();
+      if (!nextState) {
         submitForm();
         return
       }
-      $state.go(nextRouter);
+      $state.go(nextState);
     };
 
-    $scope.isNotFirst = function () {
-      return !!previousStep()
+    $scope.isFirst = function () {
+      return !multistepServ.previousStep()
+    };
+
+    $scope.isLast = function () {
+      return !multistepServ.nextStep()
     };
 
     $scope.back = function () {
-      $state.go(previousStep());
+      $state.go(multistepServ.previousStep());
     };
 
     $scope.log = function (form) {
       console.log(form);
     };
-  });
+  }]);

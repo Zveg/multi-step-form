@@ -27,7 +27,7 @@ angular.module('app', [
             controller: 'MultiStepCtrl'
           })
 
-          .state('multistep.name', {
+          .state('multistep.Name', {
             url: "/",
             data: {
               stepNumber: 1
@@ -73,8 +73,49 @@ angular.module('app', [
                 templateUrl: "/views/multistep/step4.html"
               }
             }
+          })  
+          
+          .state('signup',{
+            url:'/signup',
+            abstract: true,
+            templateUrl: "views/signup/signup.html",
+            controller: 'SignUpCtrl'
+          })
+
+          .state('signup.1', {
+            url: "/",
+            data: {
+              stepNumber: 1
+            },
+            views: {
+              'signups' : {
+                templateUrl: "views/signup/step1.html"
+              }
+            }
+          }).state('signup.2', {
+            url: "/",
+            data: {
+              stepNumber: 2
+            },
+            views: {
+              'signups' : {
+                templateUrl: "views/signup/step1.html"
+              }
+            }
+          }).state('signup.3', {
+            url: "/",
+            data: {
+              stepNumber: 3
+            },
+            views: {
+              'signups' : {
+                templateUrl: "views/signup/step1.html"
+              }
+            }
           });
 
+    
+    
 
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/');

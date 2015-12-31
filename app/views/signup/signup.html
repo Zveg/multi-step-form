@@ -15,6 +15,8 @@
           <div>4</div>
         </li>
       </ul>
+
+	    <progress></progress>
     </div>
     <div class="title-block">
       <div class="row">
@@ -39,8 +41,9 @@
     </div>
 
   </section>
-  <div class="buttons-bar">
-    <a ng-hide="!isNotFirst()" ng-click="back()" class="button">Back</a>
-    <a ng-click="submit()" class="button">{{isCurrentState(4)?'SEND':'Next'}}</a>
-  </div>
+	<div class="">
+		<a href="" ng-click="log(forms.current)" class="button">form</a>
+		<a class="btn btn-default" href="" ng-hide="isFirst()" ng-click="back()" class="button">Back</a>
+		<a class="btn btn-default" href="" ng-click="goNext(forms.current)" ng-disabled="forms.current.$invalid" class="button">{{isLast()?'SEND':'Next'}}</a>
+	</div>
 </div>

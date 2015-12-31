@@ -1,23 +1,15 @@
 angular.module('app.directives')
-  .directive('progress', function ($state) {
+  .directive('progress', ['$state', 'multistepServ', function ($state, multistepServ) {
     return {
       restrict: 'E',
+      templateUrl:"views/templates/progress.html",
       replace: true,
       link: function ($scope, element, attrs) {
-        var childStates = function(name){
-          var routerRegexp = new RegExp(name + "[.][a-z]*", "i");
-          var list = $state.get();
-          var children = [];
-          angular.forEach(list, function(state){
-            if (routerRegexp.test(state.name)){
-              children.push(state);
-            }
-          });
-          return children;
+
+        $scope.childrenRoutes = multistepServ.multistepRoutes();
+        $scope.isCurrentState = function (route) {
+          return $state.current.data.stepNumber >= route.data.stepNumber;
         };
-
-
-
       }
     }
-  });
+  }]);

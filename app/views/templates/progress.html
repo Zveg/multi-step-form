@@ -1,0 +1,6 @@
+<ul class="list-inline" id="progressbar">
+
+	<li ng-repeat="route in ::childrenRoutes track by $index" ng-class="{active: isCurrentState(route), disabled:!isCurrentState(route)}" >
+		<div>{{route.data.stepNumber}}</div>
+	</li>
+</ul>
