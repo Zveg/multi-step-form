@@ -7,8 +7,8 @@ angular.module('app.directives')
       link: function ($scope, element, attrs) {
 
         $scope.childrenRoutes = multistepServ.multistepRoutes();
-        $scope.isCurrentState = function (route) {
-          return $state.current.data.stepNumber >= route.data.stepNumber;
+        $scope.isCurrentState = function (state) {
+          return $state.current.data.stepNumber >= state.data.stepNumber;
         };
       }
     }
